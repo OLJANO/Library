@@ -5,11 +5,13 @@
  */
 package entity;
 
+import java.io.Serializable;
+
 /**
  *
  * @author user
  */
-public class Reader {
+public class Reader implements Serializable{
     private String name;
     private String lastname;
     private String email;
@@ -45,5 +47,5 @@ public class Reader {
     public String toString() {
         return "Reader{" + "name=" + name + ", lastname=" + lastname + ", email=" + email + '}';
     }
-
+    
 }

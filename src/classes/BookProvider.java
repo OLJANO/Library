@@ -22,6 +22,8 @@ public class BookProvider {
         book.setAuthor(scanner.nextLine());
         System.out.println("Год издания книги: ");
         book.setYear(new Integer(scanner.nextLine()));
+        System.out.println("Количество экземпляров: ");
+        book.setQuantity(Integer.parseInt(scanner.nextLine()));
         return book;
     }
 }

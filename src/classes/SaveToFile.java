@@ -8,7 +8,6 @@ package classes;
 import entity.Book;
 import entity.History;
 import entity.Reader;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -19,11 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author user
  */
 public class SaveToFile {
+    
     public void saveBooks(List<Book> listBooks){
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
@@ -53,7 +54,6 @@ public class SaveToFile {
             }
         }
     }
-
     public List<Book> loadBooks(){
         List<Book> listBooks = new ArrayList<>();
         FileInputStream fileInputStream = null;
@@ -65,7 +65,7 @@ public class SaveToFile {
         } catch (FileNotFoundException ex) {
             System.out.println("Ошибка: не найден файл Books.txt");
         } catch (IOException ex) {
-            System.out.println("Ошибка: чтение файла Books.txt не удалось");
+            System.out.println("Ошибка: чтение файла Books.txt не удолось");
         } catch (ClassNotFoundException ex) {
             System.out.println("Ошибка: нет класса Book");
         }finally{
@@ -86,7 +86,6 @@ public class SaveToFile {
         }
         return listBooks;
     }   
-
     public void saveReaders(List<Reader> listReaders){
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
@@ -127,7 +126,7 @@ public class SaveToFile {
         } catch (FileNotFoundException ex) {
             System.out.println("Ошибка: не найден файл Readers.txt");
         } catch (IOException ex) {
-            System.out.println("Ошибка: чтение файла Readers.txt не удалось");
+            System.out.println("Ошибка: чтение файла Readers.txt не удолось");
         } catch (ClassNotFoundException ex) {
             System.out.println("Ошибка: нет класса Readers");
         }finally{
@@ -149,7 +148,7 @@ public class SaveToFile {
         return listReaders;
     }   
 
-        public void saveHistories(List<History> listHistories){
+    void saveHistories(List<History> listHistories) {
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
         try {
@@ -179,7 +178,7 @@ public class SaveToFile {
         }
     }
 
-    public List<History> loadHistories(){
+    List<History> loadHistories() {
         List<History> listHistories = new ArrayList<>();
         FileInputStream fileInputStream = null;
         ObjectInputStream objectInputStream = null;
@@ -190,7 +189,7 @@ public class SaveToFile {
         } catch (FileNotFoundException ex) {
             System.out.println("Ошибка: не найден файл Histories.txt");
         } catch (IOException ex) {
-            System.out.println("Ошибка: чтение файла Histories.txt не удалось");
+            System.out.println("Ошибка: чтение файла Histories.txt не удолось");
         } catch (ClassNotFoundException ex) {
             System.out.println("Ошибка: нет класса History");
         }finally{
@@ -210,6 +209,6 @@ public class SaveToFile {
             }
         }
         return listHistories;
-    }   
+    }
 
-}
+   }

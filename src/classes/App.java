@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package classes;
+
 import entity.Book;
 import entity.History;
 import entity.Reader;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+
 /**
  *
  * @author user
@@ -19,18 +21,16 @@ public class App {
     List<Book> listBooks = new ArrayList<>();
     List<Reader> listReaders = new ArrayList<>();
     List<History> listHistories = new ArrayList<>();
-
     public App() {
         SaveToFile saveToFile = new SaveToFile();
         listBooks = saveToFile.loadBooks();
         listReaders = saveToFile.loadReaders();
         listHistories = saveToFile.loadHistories();
     }
-
+    
     public void run(){
         Scanner scanner = new Scanner(System.in);
-        List<History> listHistories = new ArrayList<>();
-
+        
         HistoryProvider historyProvider = new HistoryProvider();
         SaveToFile saveToFile = new SaveToFile();                    
         boolean flagExit = true;
@@ -43,6 +43,7 @@ public class App {
             System.out.println("4. Список читателей");
             System.out.println("5. Выдать книгу");
             System.out.println("6. Вернуть книгу");
+            System.out.println("7. Список выданных книг");
             System.out.println("Введите номер задачи:");
             String numberTask = scanner.nextLine();
             if(null != numberTask)
@@ -87,19 +88,35 @@ public class App {
                     break;
                 case "5":
                     System.out.println("Выдаем книгу читателю");
-
+                    
                     History history = historyProvider.createHistory(listBooks, listReaders);
-                    listHistories.add(history);
-                    saveToFile.saveHistories(listHistories);
+                    if(history != null){
+                        listHistories.add(history);
+                        saveToFile.saveHistories(listHistories); 
+                    }else{
+                        
+                    }
+                       
                     break;
                 case "6":
                     System.out.println("Возвращение книги");
                     historyProvider.returnBook(listHistories);
                     saveToFile.saveHistories(listHistories);
                     break;
-                default:
+                case "7":
+                    System.out.println("Список выданных книг");
+                    i = 1;
+                    for(History h : listHistories){
+                        if(h.getReturnDate() == null){
+                            System.out.println(i+". "+h.toString());
+                            i++;
+                        }
+                    }
+                    if(i < 2){
+                        System.out.println("Нет выданных книг");
+                        System.out.println();
+                    }
                     break;
-
             }
         }while(flagExit);
     }
